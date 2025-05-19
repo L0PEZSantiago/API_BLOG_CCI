@@ -1,0 +1,11 @@
+meta {
+  name: Get list of User - ADMIN
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://localhost:8000/api/admin/users
+  body: none
+  auth: inherit
+}
