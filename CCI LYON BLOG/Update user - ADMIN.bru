@@ -1,0 +1,22 @@
+meta {
+  name: Update user - ADMIN
+  type: http
+  seq: 3
+}
+
+patch {
+  url: https://localhost:8000/api/admin/users/4
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "JaneDoe",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "roles": [
+      "ROLE_ADMIN"
+    ]
+  }
+}

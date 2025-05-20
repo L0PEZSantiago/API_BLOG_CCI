@@ -1,0 +1,11 @@
+meta {
+  name: Delete a user - ADMIN
+  type: http
+  seq: 4
+}
+
+delete {
+  url: https://localhost:8000/api/admin/users/5
+  body: none
+  auth: inherit
+}
