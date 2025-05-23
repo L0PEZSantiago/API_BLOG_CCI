@@ -7,6 +7,7 @@ use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ORM\UniqueConstraint(fields: ['title'], name: 'UNIQUE_ARTICLE_TITLE')]
@@ -18,19 +19,24 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['common:index'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['articles:index'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Gedmo\Slug(fields: ['title'])]
+    #[Groups(['articles:index'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['articles:show'])]
     private ?string $content = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['articles:index'])]
     private ?string $shortContent = null;
 
     #[ORM\Column]
@@ -38,6 +44,7 @@ class Article
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['articles:index'])]
     private ?User $user = null;
 
     public function getId(): ?int
