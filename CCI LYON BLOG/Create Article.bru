@@ -6,6 +6,19 @@ meta {
 
 post {
   url: https://localhost:8000/api/admin/articles
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDgwMDk0NjksImV4cCI6MTc0ODAxMzA2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluIn0.SIAkgCvV4PM371_N46nR1LDs1mZWsWxZ-qq_DdzY5ssWB4AAcEYe2st4J7pffc867vUsFSRs1UUgmdQx57DrUdVlXMU1FpCldjNibHSUJy9hNp-D7DUIPqa_AE5ACYdPwTsSbA9d2l20TgffnBaHl6lN5CEPq4J0cFoRujvdRS4IJTtmxi67W3Ve36ySPnpxPGvQi9k_i39RpZrNWwMUappsKNbaFkfRkL_nYLX-qGE7f8eQKHFGU4q8jNMYne_vI3ab5gEEzMbZxwm5xy0D_MGL51vAx_mN3BVfAJv__lPSozBMg5BVas5L2jd7gOunGYsFxL6TejY40WEuUYOeuw
+}
+
+body:json {
+  {
+    "title": "Mon super article 2",
+    "content": "Mon super contenu",
+    "shortContent": "Mon super contenu court",
+    "user": 20
+  }
 }

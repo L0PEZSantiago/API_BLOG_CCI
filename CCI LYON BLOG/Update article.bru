@@ -6,6 +6,16 @@ meta {
 
 patch {
   url: https://localhost:8000/api/admin/articles/31
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDgwMDE4MzksImV4cCI6MTc0ODAwNTQzOSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluIn0.UkDT-cbery-9haOv20y9NBk6yPi7XGEtvsaBGOCnzKBK_RoLYCLb4mjYyKMEQT5mn1dziVo41ExptvHt6cM81BR4xf2FDpNkUTOIYsSZnzJZkoJvSpEWN4ZOBduKz1JT4Ja-2T20kJ8e1L_Qanax4_mtHxRGePj4uZBPbBEM2hW3H_8VIuI0IeqqL1JNaLpuJjZ_M0vrKBjpe3jhE1WdaPz1rGJZ_M-YU0__8BqBjkicVgrqE-YGin5FMf0ecBRj1Zr3RJsWmr8MRpgPv5xTc51iHGOOJ4XNYv0v5yE-KgyQQXJv0EKVUwxxApeRNiBmJuDYBRj2kTYwFKlMGbOVrg
+}
+
+body:json {
+  {
+    "title": "Titre V2"
+  }
 }

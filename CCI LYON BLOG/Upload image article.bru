@@ -1,0 +1,19 @@
+meta {
+  name: Upload image article
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://localhost:8000/api/admin/articles/1/upload
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDgzMzQzMTQsImV4cCI6MTc0ODMzNzkxNCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluIn0.SJOBhEHVEa5vAATfsi1_QlG6GKP1QIb7A1jmmSgfU79d481L3f-j6ok1sPhmdV6UfuBeVLSaV6pEKaZkmz5Juv3SVE2rzHF2rqVfH_-WqdUOJROtXy4zLcVfAvJsUVgnMd3KadeseHXmSy7sPYiGABCFACOy4UuD3R8i-6v4Oc3toRD5ZJFibtu6QDiMAxckVo4wpoW0oAISzDK9OXG_gfaARPHys34V2lRAxv0JwgCgcm7MSPXaLGvRAGgWlnbF2V1v3itFjffDFKr6tpIHndtbVwd3H2GvnM0BaA5Zv4fQx-ZMDa1vNamPeHerU8-70gdVAud-MeAubpJoMHn2Sw
+}
+
+body:multipart-form {
+  image: @file(/Users/pierre/Downloads/git.webp)
+}
