@@ -18,7 +18,6 @@ use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\HttpKernel\Attribute\MapUploadedFile;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Json;
 
 #[Route('/api/admin/articles', name: 'api_admin_articles_')]
 class ArticleController extends AbstractController
