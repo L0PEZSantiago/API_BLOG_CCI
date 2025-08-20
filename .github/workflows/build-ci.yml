@@ -11,7 +11,7 @@ jobs:
         name: PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}
         strategy:
             matrix:
-                php: [8.2, 8.3]
+                php: [8.2]
                 symfony: [7.1]
 
         steps:
