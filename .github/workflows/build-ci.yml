@@ -6,28 +6,49 @@ on:
             - "dependabot/**"
 
 jobs:
+  # Ci = Continuous Integration
     ci:
+      # Runs on the latest Ubuntu version
         runs-on: ubuntu-latest
+        # Matrix: permet de faire sous plusieurs versions de PHP et Symfony
         name: PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}
         strategy:
             matrix:
+                # PHP version
                 php: [8.2]
                 symfony: [7.1]
 
+        # Steps: Toutes les étapes que le script va faire, ceci va pull une image docker pour les tests
         steps:
+            # Checkout the repository
             - uses: actions/checkout@v4
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
                   php-version: "${{ matrix.php }}"
+                  # Extensions: extensions PHP que l'on va utiliser
                   extensions: intl, mbstring, opcache, pdo_sqlite, apcu, pcov
                   tools: symfony
+                  # Memory limit: permet de limiter la mémoire utilisée par PHP, pour le fichier php.ini
                   ini-values: memory_limit=3G
+                  # Coverage: permet de faire le coverage de l'application, pcov = coverage pour PHPUnit
                   coverage: pcov
+
+            - name : Validate composer
+              # Validate: permet de valider le fichier composer.json, comme si j'étais dans le terminal
+              run: composer validate
 
             - name: Install composer dependencies
               run: composer install --no-interaction
+
+            - name: Check Security Issues
+              # Security: permet de vérifier les vulnérabilités des dépendances
+              run: symfony security:check
+
+            - name: Check ECS review
+              # ECS: permet de vérifier le code source selon les règles d'ECS
+              run: vendor/bin/ecs check src
 
             - name: Run Unit Tests
               run: php bin/phpunit --testsuite=unit --coverage-clover coverage/cov-unit.xml
@@ -36,3 +57,11 @@ jobs:
               run: php bin/phpunit --testsuite=functional --coverage-clover coverage/cov-functional.xml
 
             # TODO: Add step for upload to codecov
+            - name: Upload coverage report unit to Codecov
+              uses: codecov/codecov-action@v5
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  # Flags: permet de spécifier les tests que l'on veut uploader, nous permettra de filtrer
+                  file: coverage/cov-unit.xml
+                  flags: unit
+                  name: codecov-umbrella
