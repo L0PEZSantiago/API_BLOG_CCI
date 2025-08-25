@@ -62,7 +62,7 @@ jobs:
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
                   # Flags: permet de spécifier les tests que l'on veut uploader, nous permettra de filtrer
-                  file: coverage/cov-unit.xml
+                  files: coverage/cov-unit.xml
                   flags: unit
                   name: codecov-umbrella
 
@@ -70,6 +70,6 @@ jobs:
               uses: codecov/codecov-action@v5
               with:
                   token: ${{ secrets.CODECOV_TOKEN }}
-                  file: coverage/cov-functional.xml
+                  files: coverage/cov-functional.xml
                   flags: functional
                   name: codecov-umbrella
